@@ -20,3 +20,45 @@ h3 {
   font-weight: 400;
   font-style: normal;
 }
+
+/* 1. 기본 리셋 및 패딩/보더 계산 방식 통일 */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2. 최상위 캔버스 스크롤 및 크기 설정 */
+html, body {
+  width: 100%;
+  /* 100dvh: 모바일 주소창/하단바 유무에 따라 가변하는 동적 화면 높이 */
+  height: 100dvh; 
+  overflow-x: hidden; /* 가로 스크롤 방지 */
+  background-color: #f8f9fa; /* 바탕 배경색 */
+}
+
+/* 3. 모바일 앱 컨테이너 (실제 화면 영역) */
+.app-container {
+  width: 100%;
+  max-width: 480px; /* 데스크톱에서 볼 때 너무 퍼지지 않게 잡아주는 모바일 최대 폭 */
+  height: 100dvh;
+  margin: 0 auto; /* PC 브라우저 검수 시 중앙 정렬 */
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  /* 모바일 안전 영역(Safe Area) 대응 (아이폰 노치/하단 바 영역) */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  
+  background-color: #ffffff; /* 앱 내부 배경색 */
+  position: relative;
+}
+
+main {
+  flex: 1;
+  overflow-y: auto; /* 콘텐츠가 길어지면 내부 스크롤 */
+}
